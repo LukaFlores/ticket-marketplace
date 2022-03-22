@@ -8,3 +8,8 @@ Required:
     - Allow post.com on localhost
         1. For mac add to file /etc/hosts
         2. 127.0.0.1 posts.com -- at the bottom of the file 
+
+To Start Development Server:
+    - Brew install skaffold
+    - Run command:
+        skaffold dev
