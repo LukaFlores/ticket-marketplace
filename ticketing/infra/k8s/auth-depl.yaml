@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: us.gcr.io/ticketing-dev-344904/auth
+          image: lukaflores/auth
 ---
 # Cluster IP Service
 apiVersion: v1
