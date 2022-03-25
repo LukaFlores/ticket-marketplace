@@ -16,6 +16,12 @@ spec:
       containers:
         - name: auth
           image: lukaflores/auth
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
 ---
 # Cluster IP Service
 apiVersion: v1
