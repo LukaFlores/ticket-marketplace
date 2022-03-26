@@ -4,7 +4,8 @@ import { json } from 'body-parser';
 import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 
-import { errorHandler, NotFoundError } from '@lukaflorestickets/common';
+import { errorHandler, NotFoundError, curentUser } from '@lukaflorestickets/common';
+import { createTicketRouter } from './routes/new';
 
 const app = express();
 
@@ -17,7 +18,9 @@ app.use(
   }),
 );
 
+app.use(curentUser);
 
+app.use(createTicketRouter);
 
 app.all('*', async () => {
   throw new NotFoundError();
