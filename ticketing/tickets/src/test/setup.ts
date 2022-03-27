@@ -33,8 +33,10 @@ afterAll(async () => {
 });
 
 global.getCookieSignUp = () => {
+  const id = new mongoose.Types.ObjectId().toHexString()
+
   const payload = {
-    id: '124rtg4tr',
+    id,
     email: 'test@test.com',
   };
 
