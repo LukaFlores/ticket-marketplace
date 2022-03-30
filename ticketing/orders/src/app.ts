@@ -5,10 +5,10 @@ import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 
 import { errorHandler, NotFoundError, curentUser } from '@lukaflorestickets/common';
-import { createTicketRouter } from './routes/new';
-import { showTicketRouter } from './routes/show';
-import { indexTicketRouter } from './routes';
-import { updateTicketRouter } from './routes/update';
+import { deleteOrderRouter } from './routes/delete';
+import { showOrderRouter } from './routes/show';
+import { indexOrderRouter } from './routes/index';
+import { newOrderRouter } from './routes/new';
 
 const app = express();
 
@@ -23,10 +23,10 @@ app.use(
 
 app.use(curentUser);
 
-app.use(createTicketRouter);
-app.use(showTicketRouter);
-app.use(indexTicketRouter);
-app.use(updateTicketRouter);
+app.use(deleteOrderRouter);
+app.use(showOrderRouter);
+app.use(indexOrderRouter);
+app.use(newOrderRouter);
 
 app.all('*', async () => {
   throw new NotFoundError();
