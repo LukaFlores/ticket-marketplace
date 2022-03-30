@@ -8,8 +8,11 @@ declare global {
   var getCookieSignUp: () => string[];
 }
 
+jest.mock('../nats-wrapper');
+
 let mongo: any;
 beforeAll(async () => {
+  jest.clearAllMocks();
   process.env.JWT_KEY = 'secret';
 
   mongo = new MongoMemoryServer();
@@ -33,7 +36,7 @@ afterAll(async () => {
 });
 
 global.getCookieSignUp = () => {
-  const id = new mongoose.Types.ObjectId().toHexString()
+  const id = new mongoose.Types.ObjectId().toHexString();
 
   const payload = {
     id,
