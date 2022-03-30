@@ -1,7 +1,5 @@
 import { app } from '../../app';
 import request from 'supertest';
-import mongoose from 'mongoose';
-import { Order, OrderStatus } from '../../models/order';
 import { Ticket } from '../../models/ticket';
 
 it('has a route handler listening to /api/orders/:orderId for get requests', async () => {
