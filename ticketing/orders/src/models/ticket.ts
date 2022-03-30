@@ -42,7 +42,7 @@ ticketSchema.statics.build = (attrs: TicketAttrs) => {
   return new Ticket(attrs);
 };
 
-ticketSchema.methods.Reserved = async function () {
+ticketSchema.methods.isReserved = async function () {
   // Make sure that this ticket is not already reserved
   // Run query to look at all orders. Find an order where the ticket
   // is the ticket we just found *and* the orders status is *not* cancelled
@@ -50,7 +50,7 @@ ticketSchema.methods.Reserved = async function () {
   // (Initial thoughts: Might be more efficent if onReserve an prop is updated on ticket )
   // this === the ticket document that we just called "isReserved" on
   const existingOrder = await Order.findOne({
-    ticket: this,
+    ticket: this as any,
     status: {
       $in: [OrderStatus.Complete, OrderStatus.Created, OrderStatus.AwaitingPayment],
     },

@@ -15,8 +15,7 @@ beforeAll(async () => {
   jest.clearAllMocks();
   process.env.JWT_KEY = 'secret';
 
-  mongo = new MongoMemoryServer();
-  await mongo.start();
+  mongo = await MongoMemoryServer.create();
   const mongoUri = await mongo.getUri();
 
   await mongoose.connect(mongoUri);
@@ -31,8 +30,8 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  await mongo.stop();
   await mongoose.connection.close();
+  await mongo.stop();
 });
 
 global.getCookieSignUp = () => {

@@ -63,5 +63,3 @@ router.post(
 );
 
 export { router as newOrderRouter };
-
-
