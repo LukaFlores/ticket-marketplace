@@ -13,7 +13,7 @@ const router = express.Router();
 // Use ENV variable
 // Store in database can change through admin request
 // Have stored per user
-const EXPIRATION_WINDOW_SECONDS = 15 * 60;
+const EXPIRATION_WINDOW_SECONDS = 1 * 60;
 
 // Custom validation assumes that the ticket will always be of type Mongoose Object ID
 // Should be removed if the ticket structure is changed
