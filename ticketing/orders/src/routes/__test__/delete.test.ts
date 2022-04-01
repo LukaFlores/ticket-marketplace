@@ -3,6 +3,7 @@ import request from 'supertest';
 import { Ticket } from '../../models/ticket';
 import { Order, OrderStatus } from '../../models/order';
 import { natsWrapper } from '../../nats-wrapper';
+import mongoose from 'mongoose';
 
 it('has a route handler listening to /api/orders for delete requests', async () => {
   const response = await request(app).delete('/api/orders/:orderId').send({});
@@ -11,6 +12,7 @@ it('has a route handler listening to /api/orders for delete requests', async () 
 
 it('marks an order as cancelled', async () => {
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });
@@ -31,6 +33,7 @@ it('marks an order as cancelled', async () => {
 
 it('emits an order cancel event', async () => {
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });

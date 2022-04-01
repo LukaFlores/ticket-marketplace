@@ -1,6 +1,7 @@
 import { app } from '../../app';
 import request from 'supertest';
 import { Ticket } from '../../models/ticket';
+import mongoose from 'mongoose';
 
 it('has a route handler listening to /api/orders for get requests', async () => {
   const response = await request(app).get('/api/orders').send({});
@@ -22,6 +23,7 @@ it('returns a status other than 401 if the user is signed in', async () => {
 
 const buildTicket = async () => {
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });

@@ -45,6 +45,19 @@ const ticketSchema = new mongoose.Schema(
 ticketSchema.set('versionKey', 'version');
 ticketSchema.plugin(updateIfCurrentPlugin);
 
+
+//To incremenet versions by hand
+// ticketSchema.pre('save', function (done) {
+//   this.$where = {
+//     // Assumption (-1) is the increment value
+//     version: this.get('version') - 1,
+//   };
+//   done();
+// });
+// =============> REQUIRED TO IMPLEMENT ../listeners/ticket-updated-listener
+//    const { title, price, version } = data;
+//    ticket.set({ title, price, version });
+
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
   return new Ticket({
     _id: attrs.id,

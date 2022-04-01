@@ -1,6 +1,7 @@
 import { app } from '../../app';
 import request from 'supertest';
 import { Ticket } from '../../models/ticket';
+import mongoose from 'mongoose';
 
 it('has a route handler listening to /api/orders/:orderId for get requests', async () => {
   const response = await request(app).get('/api/orders/:orderId').send({});
@@ -11,6 +12,7 @@ it('has a route handler listening to /api/orders/:orderId for get requests', asy
 it('Fetches the order', async () => {
   // Create a ticket
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });
@@ -45,6 +47,7 @@ it('returns an error if one user trys to fetch another users order', async () =>
 it('Fetches the order', async () => {
   // Create a ticket
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });
