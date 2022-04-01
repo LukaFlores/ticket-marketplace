@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import { requireAuth, validateRequest } from '@lukaflorestickets/common';
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
-import { TickerCreatedPublisher } from '../events/publishers/ticket-created-publisher';
+import { TicketCreatedPublisher } from '../events/publishers/ticket-created-publisher';
 import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
@@ -26,7 +26,7 @@ router.post(
 
     await ticket.save();
 
-    await new TickerCreatedPublisher(natsWrapper.client).publish({
+    await new TicketCreatedPublisher(natsWrapper.client).publish({
       id: ticket.id,
       title: ticket.title,
       price: ticket.price,
