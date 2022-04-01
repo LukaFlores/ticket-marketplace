@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { app } from './app';
+import { ExpirationCompleteListener } from './events/listeners.ts/expiration-complete-listener';
 import { TicketCreatedListener } from './events/listeners.ts/ticket-created-listener';
 import { TicketUpdatedListener } from './events/listeners.ts/ticket-updated-listener';
 import { natsWrapper } from './nats-wrapper';
@@ -45,7 +46,7 @@ const start = async () => {
 
     new TicketCreatedListener(natsWrapper.client).listen();
     new TicketUpdatedListener(natsWrapper.client).listen();
-    
+    new ExpirationCompleteListener(natsWrapper.client).listen();
   } catch (error) {
     console.error(error);
   }
