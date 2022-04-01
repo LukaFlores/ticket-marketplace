@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lukaflorestickets/common": "^1.0.12",
+    "@lukaflorestickets/common": "^1.0.13",
     "@types/bull": "^3.15.8",
     "bull": "^4.8.1",
     "mongoose-update-if-current": "^1.4.0",
