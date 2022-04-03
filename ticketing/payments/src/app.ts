@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 
 import { errorHandler, NotFoundError, curentUser } from '@lukaflorestickets/common';
+import { createChargeRouter } from './routes/new';
 
 const app = express();
 
@@ -18,6 +19,8 @@ app.use(
 );
 
 app.use(curentUser);
+
+app.use(createChargeRouter);
 
 app.all('*', async () => {
   throw new NotFoundError();
