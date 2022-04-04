@@ -2,25 +2,23 @@ import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
-
-import { errorHandler, NotFoundError, curentUser } from '@lukaflorestickets/common';
+import { errorHandler, NotFoundError, currentUser } from '@lukaflorestickets/common';
 import { createChargeRouter } from './routes/new';
 
 const app = express();
-
 app.set('trust proxy', true);
 app.use(json());
 app.use(
   cookieSession({
     signed: false,
     secure: process.env.NODE_ENV !== 'test',
-  }),
+  })
 );
+app.use(currentUser);
 
-app.use(curentUser);
 app.use(createChargeRouter);
 
-app.all('*', async () => {
+app.all('*', async (req, res) => {
   throw new NotFoundError();
 });
 

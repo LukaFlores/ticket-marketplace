@@ -4,7 +4,7 @@ import { json } from 'body-parser';
 import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 
-import { errorHandler, NotFoundError, curentUser } from '@lukaflorestickets/common';
+import { errorHandler, NotFoundError, currentUser } from '@lukaflorestickets/common';
 import { createTicketRouter } from './routes/new';
 import { showTicketRouter } from './routes/show';
 import { indexTicketRouter } from './routes';
@@ -21,7 +21,7 @@ app.use(
   }),
 );
 
-app.use(curentUser);
+app.use(currentUser);
 
 app.use(createTicketRouter);
 app.use(showTicketRouter);
