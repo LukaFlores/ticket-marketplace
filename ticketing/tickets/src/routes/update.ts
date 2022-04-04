@@ -4,7 +4,7 @@ import {
   validateRequest,
   NotAuthorizedError,
   NotFoundError,
-  BadReqeustError,
+  BadRequestError,
 } from '@lukaflorestickets/common';
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
@@ -29,7 +29,7 @@ router.put(
     }
 
     if (ticket.orderId) {
-      throw new BadReqeustError('Cannot Edit a reserved ticket');
+      throw new BadRequestError('Cannot Edit a reserved ticket');
     }
 
     if (ticket.userId !== req.currentUser!.id) {

@@ -3,7 +3,7 @@ import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
 
 import { User } from '../models/user';
-import { BadReqeustError, validateRequest } from '@lukaflorestickets/common';
+import { BadRequestError, validateRequest } from '@lukaflorestickets/common';
 
 const router = express.Router();
 
@@ -23,7 +23,7 @@ router.post(
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      throw new BadReqeustError('Email in use');
+      throw new BadRequestError('Email in use');
     }
 
     const user = User.build({

@@ -1,4 +1,4 @@
-import { BadReqeustError, NotFoundError, requireAuth } from '@lukaflorestickets/common';
+import { BadRequestError, NotFoundError, requireAuth } from '@lukaflorestickets/common';
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import mongoose from 'mongoose';
@@ -40,7 +40,7 @@ router.post(
     const isReserved = await ticket.isReserved();
 
     if (isReserved) {
-      throw new BadReqeustError('Ticket is already Reserved');
+      throw new BadRequestError('Ticket is already Reserved');
     }
 
     // Calculate an expiration date

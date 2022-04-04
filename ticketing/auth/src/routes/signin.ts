@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { body } from 'express-validator';
 
 import { User } from '../models/user';
-import { BadReqeustError, validateRequest } from '@lukaflorestickets/common';
+import { BadRequestError, validateRequest } from '@lukaflorestickets/common';
 import { PasswordManager } from '../services/passwordManager';
 
 const router = express.Router();
@@ -20,13 +20,13 @@ router.post(
 
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
-      throw new BadReqeustError('Invalid Credentials');
+      throw new BadRequestError('Invalid Credentials');
     }
 
     const passwordsMatch = await PasswordManager.compare(existingUser.password, password);
 
     if (!passwordsMatch) {
-      throw new BadReqeustError('Invalid Credentials');
+      throw new BadRequestError('Invalid Credentials');
     }
     const userJwt = jwt.sign(
       {

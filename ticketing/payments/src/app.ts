@@ -1,7 +1,6 @@
 import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
-import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 
 import { errorHandler, NotFoundError, curentUser } from '@lukaflorestickets/common';
@@ -19,7 +18,6 @@ app.use(
 );
 
 app.use(curentUser);
-
 app.use(createChargeRouter);
 
 app.all('*', async () => {
