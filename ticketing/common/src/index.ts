@@ -20,6 +20,7 @@ export * from './events/subjects/ticket-updated-event';
 export * from './events/subjects/order-cancelled-event';
 export * from './events/subjects/order-created-event';
 export * from './events/subjects/expiration-complete-event';
+export * from './events/subjects/payment-created-event';
 
 // Types
 export * from './events/types/order-status';

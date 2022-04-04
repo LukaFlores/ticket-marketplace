@@ -9,6 +9,11 @@ declare global {
 }
 
 jest.mock('../nats-wrapper');
+//jest.mock('../../stripe');
+
+//Ideally set this up as an environment variable
+process.env.STRIPE_KEY =
+  'sk_test_51IpLbdDIzvnhaU4WTBR8pzj1r6XgaFBXcs95R5wf8nahazqRa3Hi1FMiGfOLKiIyfMDzjqj0lVSRGKnVAd1L8yoK00jBK26ZUp';
 
 let mongo: any;
 beforeAll(async () => {
@@ -31,8 +36,8 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  await mongo.stop();
   await mongoose.connection.close();
+  await mongo.stop();
 });
 
 global.getCookieSignUp = (id?: string) => {
