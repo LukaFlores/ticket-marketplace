@@ -5,13 +5,12 @@ import { param } from 'express-validator';
 
 const router = express.Router();
 
-router.get(
-  '/api/tickets/',
-  async (req: Request, res: Response) => {
-    const ticket = await Ticket.find({});
+router.get('/api/tickets/', async (req: Request, res: Response) => {
+  const ticket = await Ticket.find({
+    orderId: undefined,
+  });
 
-    res.send(ticket);
-  },
-);
+  res.send(ticket);
+});
 
 export { router as indexTicketRouter };
