@@ -21,3 +21,11 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - name: Docker Push
         run: docker push lukaflores/auth
+      - name: Install Doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token:  ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Get Kubernetes Context
+        run: doctl kubernetes cluster kubeconfig save ticketing
+      - name: Restart Deployment
+        run: kubectl rollout restart deployment auth-depl
