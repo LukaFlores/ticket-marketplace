@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - host: ticketing.dev
+    - host: www.test-development-site-12345.xyz
       http:
         paths:
           - path: /api/payments/?(.*)
